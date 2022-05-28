@@ -194,6 +194,10 @@ while run:
         rect = pygame.rect.Rect((0, i * 100), (220, 100))
         instrument_rects.append(rect)
 
+    # saving and load functionality
+    save_button = pygame.draw.rect(screen, gray, [900, HEIGHT -150, 220, 48], 0, 5)
+    load_button = pygame.draw.rect(screen, gray, [900, HEIGHT -100, 220, 48], 0, 5)
+
 
     if beat_change:
         play_notes()
