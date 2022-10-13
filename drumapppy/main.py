@@ -1,5 +1,6 @@
 # Beat Maker
-
+import os
+import matplotlib
 from asyncore import write
 from os import path
 from secrets import randbelow
@@ -52,20 +53,50 @@ beat_change = True
 save_menu = False
 load_menu = False
 saved_beats = []
-file = open('my_beats.txt', 'r')
-for line in file:
+this_dir, this_filename = os.path.split(__file__)
+myfile = os.path.join(this_dir, 'my_beats.txt')
+#file = open('my_beats.txt', 'r')
+for line in myfile:
     saved_beats.append(line)
 beat_name = ''
 typing = False
 
 # load in sounds
 
-hi_hat = mixer.Sound('sounds/hi_hat.WAV')
-snare = mixer.Sound('sounds/snare.WAV')
-kick = mixer.Sound('sounds/kick.WAV')
-crash = mixer.Sound('sounds/crash.wav')
-clap = mixer.Sound('sounds/clap.wav')
-tom = mixer.Sound('sounds//tom.WAV')
+# TODO: Fix no such file or directory problem
+
+this_dir, this_filename = os.path.split(__file__)
+
+# hi_hat = mixer.Sound('sounds/hi_hat.WAV')
+
+hi_hat_0 = os.path.join(this_dir, 'sounds/hi_hat.WAV')
+hi_hat = mixer.Sound(hi_hat_0)
+
+# snare = mixer.Sound('sounds/snare.WAV')
+
+snare_0 = os.path.join(this_dir, 'sounds/snare.WAV')
+snare = mixer.Sound(snare_0)
+
+# kick = mixer.Sound('sounds/kick.WAV')
+
+kick_0 = os.path.join(this_dir, 'sounds/kick.WAV')
+kick = mixer.Sound(kick_0)
+
+# crash = mixer.Sound('sounds/crash.wav')
+
+crash_0 = os.path.join(this_dir, 'sounds/crash.wav')
+crash = mixer.Sound(crash_0)
+
+# clap = mixer.Sound('sounds/clap.wav')
+
+clap_0 = os.path.join(this_dir, 'sounds/clap.wav')
+clap = mixer.Sound(clap_0)
+
+# tom = mixer.Sound('sounds//tom.WAV')
+
+tom_0 = os.path.join(this_dir, 'sounds/tom.WAV')
+tom = mixer.Sound(tom_0)
+
 pygame.mixer.set_num_channels(instruments * 3)
 
 def play_notes():
