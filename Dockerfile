@@ -1,10 +1,12 @@
-FROM python:3.8
+FROM python:3.8-slim-buster
 
-WORKDIR /code
+WORKDIR /app
 
-COPY requirements.txt .
+COPY . /app
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 80
 
 COPY ./drumapppy ./drumapp
 
