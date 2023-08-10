@@ -9,4 +9,3 @@ RUN pip install -r requirements.txt
 COPY ./drumapppy ./drumapp
 
 CMD ["python", "./drumapppy/main.py"]
-
