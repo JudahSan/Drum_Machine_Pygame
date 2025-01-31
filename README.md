@@ -1,66 +1,73 @@
-## Simple drum machine project
+## Simple Drum Machine Project
 
-![drum machine](/img/drum_machine.png)
+![Drum Machine](/img/drum_machine.png)
 
+### Setup
 
-Setup
--
+1. **Clone the repository**
+   ```sh
+   git clone git@github.com:JudahSan/Drum_Machine_Pygame.git
+   ```
 
-1. Clone the repo
+2. **Navigate into the directory and create a virtual environment**
+   ```sh
+   cd Drum_Machine_Pygame
+   python -m venv .venv
+   ```
 
-```
-git clone git@github.com:JudahSan/Drum_Machine_Pygame.git
-```
+3. **Activate the virtual environment and install dependencies**
+   ```sh
+   source .venv/bin/activate  # Adjust this command if needed based on your shell
+   pip install -r requirements.txt  # Install dependencies
+   ```
 
-2. Cd into the directory and create a virtual environment
+4. **Run the game**
+   ```sh
+   python3 main.py
+   ```
 
-```
-cd Drum_Machine_Pygame
-python -m venv .venv
-```
+---
 
-3. Activate the virtual environment and install dependecies
+### Android Port Instructions
 
-```
-source .venv/bin/activate # this might change depending on the directory you are in
-pip install -r requirements.txt # install dependecies
-```
+> **Note:** I attempted to port this project to Android but encountered issues. I will continue troubleshooting and update with a working solution soon.
 
-4. Run the game
+To attempt building for Android, follow these steps:
 
-```
-python3 main.go
-```
+1. **Install Buildozer** (See [Buildozer Docs](https://buildozer.readthedocs.io/en/latest/installation.html#targeting-android) or [Guide Video](https://www.youtube.com/watch?v=L6XOqakZOeA))
+   ```sh
+   pip install --upgrade buildozer
+   ```
 
-Android port instructions
--
+2. **Install required system dependencies**
+   ```sh
+   sudo apt update
+   sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config \
+       zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+   pip3 install --upgrade Cython==0.29.33 virtualenv  # Remove --user if using a virtual environment
+   ```
 
-Install [buildozer](https://buildozer.readthedocs.io/en/latest/installation.html#targeting-android) or follow [guide video](https://www.youtube.com/watch?v=L6XOqakZOeA)
+3. **Update the system PATH**
+   Add this line to the end of your `~/.bashrc` file:
+   ```sh
+   export PATH=$PATH:~/.local/bin/
+   ```
 
->> Compatibility issues with python 3.11.x
+4. **Install additional dependencies**
+   ```sh
+   sudo apt install -y automake libtinfo5
+   pip install setuptools
+   ```
 
-1. Install buildozer in the virtual environment
+5. **Build the Android package**
+   ```sh
+   buildozer -v android debug deploy run
+   ```
 
-```
-pip install --upgrade buildozer
-```
+6. **If needed, clean the project**
+   ```sh
+   buildozer appclean
+   ```
 
-2. Run these
+I'll continue debugging the Android build process and update this section when I find a reliable solution. 🚀
 
-```
-sudo apt update
-sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-pip3 install --upgrade Cython==0.29.33 virtualenv  # the --user should be removed if you do this in a venv
-
-# add the following line at the end of your ~/.bashrc file
-export PATH=$PATH:~/.local/bin/
-```
-
-3. Install automate : `sudo apt install -y automake`
-4. Install `libtinfo5`: `sudo apt install libtinfo5`
-5. Install setuptools: `pip install setuptools`
-
-
-- Clean command: `buildozer appclean`
-
-- Start build: `buildozer -v android debug deploy run`
