@@ -2,12 +2,21 @@
 import os
 import matplotlib
 from asyncore import write
-from os import path
+from os import path, environ
 from secrets import randbelow
 from telnetlib import DO
 from matplotlib import colors
 import pygame
 from pygame import mixer
+from sys import platform as _sys_platform
+
+def platform():
+    if 'ANDROID_ARGUMENT' in environ:
+        return "android"
+    elif _sys_platform in ('linux', 'linux2', 'linux3'):
+        return "linux"
+    elif _sys_platform in ('win32', 'cygwin'):
+        return 'win'
 
 # intialize for fonts and other built in fuctionalities
 pygame.init()
@@ -16,6 +25,17 @@ pygame.font.init()
 # screen
 WIDTH = 1400
 HEIGHT = 800
+
+display_surface = pygame.display.set_mode((HEIGHT, WIDTH), pygame.FULLSCREEN)
+
+pygame.display.set_caption('Drum Machine')
+
+if platform()=="android":
+    path="/data/data/org.judahsan/files/app/"
+elif platform()=="linux":
+    path="./"
+
+image = pygame.image.load(path+"image.png")
 
 # rgb colors
 black = (0, 0, 0)
